@@ -1,8 +1,8 @@
-import SingleBook from "./function.js"
+import SingleBook from "./SingleBook.js"
 import books from './fantasy.json'
-import Row from 'react-bootstrap/esm/Row'
-import Col from 'react-bootstrap/esm/Col'
-import Form from 'react-bootstrap/esm/Form'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form'
 import { useState } from "react"
 
 
