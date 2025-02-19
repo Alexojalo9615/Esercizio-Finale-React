@@ -1,8 +1,6 @@
 import { useState } from "react";
 
 
-
-
 function AddComment({ asin, onAddReview }) { // Uso il valore di ASIN per associare il commento al libro giusto (es. elementId: asin)
 
 
@@ -33,7 +31,7 @@ function AddComment({ asin, onAddReview }) { // Uso il valore di ASIN per associ
             const resp = await fetch("https://striveschool-api.herokuapp.com/api/comments", {
                 method: "POST",
                 headers: {
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzYxYzRhNjUzMDRhNzAwMTUxNDhiNDMiLCJpYXQiOjE3Mzg2OTEyMzgsImV4cCI6MTczOTkwMDgzOH0.AOX72FQERNo_5vClM2Y-hI3WKRedrXSqxHeLUZI3X34",
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzYxYzRhNjUzMDRhNzAwMTUxNDhiNDMiLCJpYXQiOjE3Mzk5ODI1MTAsImV4cCI6MTc0MTE5MjExMH0.dq-ekzp5rYOybLejDa5UVAACpG2iuHWApgvhw3-_o8k",
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(newComment)
@@ -43,6 +41,7 @@ function AddComment({ asin, onAddReview }) { // Uso il valore di ASIN per associ
 
                 const risposta = await resp.json();
 
+                alert('Recensione inviata!')
                 console.log("Commento aggiunto con successo!");
 
                 setCommento(""); // Resetto i campi del form dopo il successo
@@ -97,7 +96,7 @@ function AddComment({ asin, onAddReview }) { // Uso il valore di ASIN per associ
 
                     <hr></hr>
 
-                    <button onClick={handleSubmit} className='btn btn-outline-primary' type="submit">Invia</button>
+                    <button onClick={handleSubmit} className='btn btn-outline-primary' type="submit" >Invia</button>
                 </>
             )}
         </form>

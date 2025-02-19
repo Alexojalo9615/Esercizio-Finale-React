@@ -1,7 +1,7 @@
 import { ListGroup } from "react-bootstrap/";
 import SingleComment from "./SingleComment.js";
 
-const CommentList = ({ comments }) => {
+const CommentList = ({ comments, onDeleteComment }) => {
 
 
     return (
@@ -11,7 +11,7 @@ const CommentList = ({ comments }) => {
             {comments.length > 0 ? (
                 comments.map((comment) => (
 
-                    <SingleComment key={comment._id} comment={comment} />
+                    <SingleComment key={comment._id} comment={comment} onDelete={onDeleteComment} />
                 ))
             ) : (
                 <p>Nessuna recensione disponibile</p>

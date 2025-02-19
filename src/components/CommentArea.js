@@ -21,7 +21,7 @@ function CommentArea({asin}) {
 
                 const resp = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${asin}`, {
                     headers: {
-                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzYxYzRhNjUzMDRhNzAwMTUxNDhiNDMiLCJpYXQiOjE3Mzg2OTEyMzgsImV4cCI6MTczOTkwMDgzOH0.AOX72FQERNo_5vClM2Y-hI3WKRedrXSqxHeLUZI3X34",
+                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzYxYzRhNjUzMDRhNzAwMTUxNDhiNDMiLCJpYXQiOjE3Mzk5ODI1MTAsImV4cCI6MTc0MTE5MjExMH0.dq-ekzp5rYOybLejDa5UVAACpG2iuHWApgvhw3-_o8k",
                         "Content-Type": "application/json"
                     }
                 });
@@ -57,9 +57,39 @@ function CommentArea({asin}) {
 
     };
 
+
+    const deleteSingleComment = async (commentId) => {
+
+        try {
+    
+            const resp = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${commentId}`,
+    
+                {
+                    method: 'DELETE',
+                    headers: {
+                        "Authorization":
+                            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzYxYzRhNjUzMDRhNzAwMTUxNDhiNDMiLCJpYXQiOjE3Mzk5ODI1MTAsImV4cCI6MTc0MTE5MjExMH0.dq-ekzp5rYOybLejDa5UVAACpG2iuHWApgvhw3-_o8k",
+                    },
+                }
+            );
+            if (resp.ok) {
+    
+                setComments((prevComments =>
+                    prevComments.filter((comment) => comment._id !== commentId)
+                ));
+            } else {
+    
+                console.error("Errore nella cancellazione del commento");
+            }
+        } catch (error) {
+    
+            console.error("Errore di rete:", error);
+        }
+    };
+
     return (
 
-        <div className='comment-area'>
+        <div className='comment-area' >
 
             <h5>Recensioni per questo libro</h5>
             {loading && <p>Caricamento in corso ...</p>}
@@ -68,7 +98,7 @@ function CommentArea({asin}) {
             {/* {Renderizza commenti solo se ci sono recensioni} */}
             {/* Passa la lista delle recensioni come prop  */}
             
-            {comments.length > 0 ? <CommentList comments={comments} /> : <p>Non ci sono recensioni.</p>}
+            {comments.length > 0 ? <CommentList comments={comments} onDeleteComment={deleteSingleComment} /> : <p>Non ci sono recensioni.</p>}
 
             {/* {Passa la funzione nuovoCommento a addComment} */}
 

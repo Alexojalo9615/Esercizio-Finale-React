@@ -26,7 +26,7 @@ function MyNav() {
 function Welcome() {
     alert("Welcome to my page");
     return (
-        <h2>Welcome to my page</h2>
+        <h2>Benvenuti in EpicBooks!</h2>
     )
 
 }

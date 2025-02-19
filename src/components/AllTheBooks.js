@@ -1,5 +1,5 @@
 import SingleBook from "./SingleBook.js"
-import books from './fantasy.json'
+import books from './dati/fantasy.json'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
@@ -10,6 +10,7 @@ import { useState } from "react"
 function AllTheBooks() {
 
     const [searchBook, setSearchBook] = useState("");
+    const [selectedBook, setSelecteBook] = useState(null)
     const filteredBooks = books.books.filter((book) => book.title.toLowerCase().includes(searchBook.toLowerCase()));  // Qua gli sto dicendo, vai dentro libri, filtra un libro con titolo in minuscolo e aggiungilo a "filteredBook" se include gli elementi che andremo a inserire in "searchBook" 
     return (
         <>
@@ -29,10 +30,14 @@ function AllTheBooks() {
             </Row>
             <Row className='row' >
                 {filteredBooks.map((book) => {
+                    const isSelected = selectedBook === book.asin;
                     return (
                         <>
                             <Col className="d-flex mb-4" key={book.asin} sm={6} md={4} lg={3} xl={3}>
-                                <SingleBook book={book} />
+                                <SingleBook 
+                                book={book}
+                                selected={isSelected} 
+                                onSelect={() => setSelecteBook(book.asin)}/>
                             </Col>
                         </>
                     );
