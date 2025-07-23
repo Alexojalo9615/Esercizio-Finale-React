@@ -23,14 +23,6 @@ function MyNav() {
 }
 
 
-function Welcome() {
-    alert("Welcome to my page");
-    return (
-        <h2>Benvenuti in EpicBooks!</h2>
-    )
-
-}
 
 
-
-export { MyNav, Welcome }
+export default MyNav 

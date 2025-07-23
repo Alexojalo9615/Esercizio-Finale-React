@@ -1,5 +1,5 @@
 import './App.css';
-import { MyNav, Welcome } from './components/MyNavWelcome.js'
+import  MyNav  from './components/MyNavWelcome.js'
 import AllTheBooks from './components/AllTheBooks.js';
 import { Container } from 'react-bootstrap'
 import BookProvider from './BookContext.js';
@@ -19,7 +19,6 @@ function App() {
       <BookProvider>
         <div className="App">
           <header className="App-header">
-            <Welcome />
             <MyNav />
             <Container>
               <Routes>
